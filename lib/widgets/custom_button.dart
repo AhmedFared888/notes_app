@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
-
+  const CustomButton({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,10 +15,10 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
           color: kprimaryColor,
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'Add',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
