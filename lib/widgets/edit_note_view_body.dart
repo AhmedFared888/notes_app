@@ -8,33 +8,34 @@ class EditNoteViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: CustomAppBar(
               title: 'Edit Note',
               icon: Icons.check,
             ),
           ),
-          CustomTextField(
+          const CustomTextField(
             hint: 'Title',
           ),
-          CustomTextField(
+          const CustomTextField(
             hint: 'Content',
             maxLines: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 400,
           ),
           CustomButton(
+            onTap: () {},
             title: 'Edit',
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
         ],
