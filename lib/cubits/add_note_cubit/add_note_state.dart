@@ -1,15 +1,15 @@
 part of 'add_note_cubit.dart';
 
 @immutable
-sealed class NotesState {}
+sealed class AddNoteState {}
 
-class NotesInitial extends NotesState {}
+class NotesInitial extends AddNoteState {}
 
-class AddNoteLoading extends NotesState {}
+class AddNoteLoading extends AddNoteState {}
 
-class AddNotesuccess extends NotesState {}
+class AddNotesuccess extends AddNoteState {}
 
-class AddNoteFailure extends NotesState {
+class AddNoteFailure extends AddNoteState {
   final String errMessage;
 
   AddNoteFailure(this.errMessage);
