@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  CustomButton({super.key, required this.title, required this.onTap});
+  CustomButton(
+      {super.key,
+      required this.title,
+      required this.onTap,
+      this.isLoading = false});
   final String title;
   final void Function()? onTap;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,14 +24,18 @@ class CustomButton extends StatelessWidget {
             color: kprimaryColor,
           ),
           child: Center(
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: isLoading
+                ? const CircularProgressIndicator(
+                    color: Colors.black,
+                  )
+                : Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         ),
       ),
