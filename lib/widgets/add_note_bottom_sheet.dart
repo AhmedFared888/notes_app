@@ -26,9 +26,15 @@ class _AddNoteBottomSheetState extends State<AddNoteBottomSheet> {
           }
         },
         builder: (context, state) {
-          return const AbsorbPointer(
+          return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
-            child: SingleChildScrollView(child: AddNoteForm()),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: const SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
+            ),
           );
         },
       ),
