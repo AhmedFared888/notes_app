@@ -1,4 +1,4 @@
-part of 'notes_cubit_cubit.dart';
+part of 'notes_cubit.dart';
 
 @immutable
 sealed class NotesCubitState {}
@@ -13,8 +13,8 @@ final class NotesCubitSuccess extends NotesCubitState {
   NotesCubitSuccess(this.note);
 }
 
-final class NotesCubitFaliure extends NotesCubitState {
+final class NotesCubitFailure extends NotesCubitState {
   final String errMessage;
 
-  NotesCubitFaliure(this.errMessage);
+  NotesCubitFailure(this.errMessage);
 }
