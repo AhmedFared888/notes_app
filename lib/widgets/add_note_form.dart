@@ -51,7 +51,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
               return BlocConsumer<AddNoteCubit, AddNoteState>(
                 listener: (context, state) {
                   if (state is AddNoteSuccess) {
-                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Note added successfully!')),
                     );
