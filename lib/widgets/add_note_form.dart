@@ -46,44 +46,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 50,
           ),
-          BlocBuilder<NotesCubit, NotesState>(
+          BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
-              return BlocConsumer<AddNoteCubit, AddNoteState>(
-                listener: (context, state) {
-                  if (state is AddNoteSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Note added successfully!')),
-                    );
-                  } else if (state is AddNoteFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Failed to add note!')),
-                    );
+              return CustomButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    var currentDate = DateTime.now();
+                    var formattedCurrentDate =
+                        DateFormat.yMd().format(currentDate);
+                    var noteModel = NoteModel(
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: formattedCurrentDate,
+                        color: Colors.blue.value);
+                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
                   }
                 },
-                builder: (context, state) {
-                  return CustomButton(
-                    isLoading: state is AddNoteLoading ? true : false,
-                    onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        var currentDate = DateTime.now();
-                        var formattedCurrentDate =
-                            DateFormat.yMd().format(currentDate);
-                        var noteModel = NoteModel(
-                            title: title!,
-                            subTitle: subTitle!,
-                            date: formattedCurrentDate,
-                            color: Colors.blue.value);
-                        BlocProvider.of<AddNoteCubit>(context)
-                            .addNote(noteModel);
-                      } else {
-                        autovalidateMode = AutovalidateMode.always;
-                        setState(() {});
-                      }
-                    },
-                    title: 'Add',
-                  );
-                },
+                title: 'Add',
               );
             },
           ),

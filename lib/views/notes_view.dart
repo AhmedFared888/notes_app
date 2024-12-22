@@ -10,38 +10,35 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubit(),
-      child: Scaffold(
-        floatingActionButton: BlocBuilder<NotesCubit, NotesState>(
-          builder: (context, state) {
-            return FloatingActionButton(
-              onPressed: () {
-                NotesCubit cubit = BlocProvider.of<NotesCubit>(context);
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider.value(
-                      value: cubit,
-                      child: const AddNoteBottomSheet(),
-                    );
-                  },
-                );
-              },
-              backgroundColor: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(35.0),
-              ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
-            );
-          },
-        ),
-        body: const NotesViewBody(),
+    return Scaffold(
+      floatingActionButton: BlocBuilder<NotesCubit, NotesState>(
+        builder: (context, state) {
+          return FloatingActionButton(
+            onPressed: () {
+              NotesCubit cubit = BlocProvider.of<NotesCubit>(context);
+              showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) {
+                  return BlocProvider.value(
+                    value: cubit,
+                    child: const AddNoteBottomSheet(),
+                  );
+                },
+              );
+            },
+            backgroundColor: Colors.lightBlue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(35.0),
+            ),
+            child: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+          );
+        },
       ),
+      body: const NotesViewBody(),
     );
   }
 }
